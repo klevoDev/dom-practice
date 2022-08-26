@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM практика</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <main class="page">
+            <section class="page__start start">
+                <div class="container">
+                    <h1 class="start__heading heading">Задачник по DOM'у</h1>
+                    <p class="start__text text">
+                        Все задачи должны работать корретно и не мешать работе друг друга. Код комментировать не нужно.<br>
+                        <strong>ВНИМАНИЕ:</strong> Добавлять классы, id, дата-атрибуты запрещено. Все задачи должны быть решены средствами JS.<br>
+                        <b>Дополнительное задание:</b> разобраться, что означают любые теги и атрибуты в этом файле, и когда они применяются.
+                        <br>
+                        Если пользователь ввёл не число, то в результат вывести "NaN"!
+                    </p>
+                    <h2 class="start__subheading subheading">Проверка на чётность</h2>
+                    <p class="start__text text">
+                        <b>Задача 1.</b> Пользователь вводит число в первое поле. После нажатия на кнопку <em>Узнать</em> во втором поле появляется слово «чётное» или «нечётное».
+                    </p>
+                    <form action="#" method="get" class="start__form form">
+                        <fieldset class="form__field">
+                            <legend class="form__title title">Проверка на чётность</legend>
+                            <input class="form__input input" type="text" name="number" placeholder="Введите число">
+                            <input class="form__input input" type="text" name="even-odd" readonly placeholder="Результат">
+                            <!-- <span class="form__result">Результат</span> -->
+
+                            <button class="form__btn btn" type="button">Узнать</button>
+                            <button class="form__btn btn" type="submit">Отправить</button>
+                        </fieldset>
+                    </form>
+                    <p class="start__text text">
+                        <b>Дополнение:</b> Вместо <i>input</i> с placeholder="Результат" использовать <i>span</i>.
+                    </p>
+                </div>
+            </section>
+
+            <section class="page__begin begin">
+                <div class="container">
+                    <h2 class="begin__subheading subheading">Мини-калькулятор</h2>
+                    <p class="begin__text text">
+                        <b>Задача 2.</b> Реализовать калькулятор, который выполняется все действия, перечисленные в теге <i>select</i>. После нажатия на кнопку расчитать выражение и вывести результат в третье поле. <br>
+                        Если пользователь ввёл не число, то в результат вывести "NaN"!
+                    </p>
+                    <form action="#" method="get" class="begin__form form">
+                        <fieldset class="form__field">
+                            <legend class="form__title title">Калькулятор</legend>
+                            <input class="form__input input" type="text" name="operand-1" placeholder="Первый операнд">
+                            <select class="form__input input" name="sign">
+                                <option value="plus">+</option>
+                                <option value="subtraction">-</option>
+                                <option value="divide">:</option>
+                                <option selected value="multiplication">&#215;</option>
+                            </select>
+                            <input class="form__input input" type="text" name="operand-2" placeholder="Второй операнд">
+                            <span>=</span>
+                            <input class="form__input input" type="text" name="result" readonly placeholder="Результат">
+                            <button class="form__btn btn" type="submit">Расчитать</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </section>
+
+            <section class="page__back back">
+                <div class="container">
+                    <h2 class="back__subheading subheading">Задний фон</h2>
+                    <p class="back__text text">
+                        <b>Задача 3.</b> Установить задний фон всего сайта в соответствии с заданным списком по нажатию на кнопку: <br>
+                    </p>
+                    <ul class="back__list">
+                        <li class="back__item">#ccc - серый</li>
+                        <li class="back__item">#332f2c - тёмно-серый</li>
+                        <li class="back__item">#ffffcc - светло-жёлтый</li>
+                        <li class="back__item">#ff9640 - оранжевый</li>
+                    </ul>
+                    <p class="back__text text">
+                        <b>&#11088;</b> Реализовать функцию: вернуть задний фон по умолчанию: фон возвращается в состояние, которое было установлено в момент загрузки сайта в теге <i>select</i>. Для проверки этого задания переместите selected на любой другой option и проверьте результат<br>
+                    </p>
+                    <select class="back__input input" name="background">
+                        <option value="gray">Серый</option>
+                        <option value="dark-gray">Тёмно-серый</option>
+                        <option selected value="white">Белый</option>
+                        <option value="light-yellow">Светло-жёлтый</option>
+                        <option value="orange">Оранжевый</option>
+                    </select>
+                    <button class="back__btn btn" type="button">Установить фон</button>
+                    <button class="back__btn btn" type="button">Вернуть по умолчанию</button>
+                </div>
+            </section>
+
+            <section class="page__loto loto">
+                <div class="container">
+                    <h2 class="loto__subheading subheading">Лотарея</h2>
+                    <p class="loto__text text">
+                        <b>Задача 4.</b> Пользователю даётся 3 попытки испытать удачу. По нажатию на кнопку включаются случайным образом 5 чекбоксов. Если включились все, то всплывает окно alert'ом о том, что вы выиграли приз. (А также все чекбоксы становятся checked) Если в течении 3ёх попыток не повезёт, то кнопка блокируется - <strong>disabled</strong> и испытать удачу уже не получится (но можно обновить страницу).
+                    </p>
+
+                    <form action="#" class="loto__form">
+                        <input class="loto__check check" type="checkbox" disabled name="lot-1">
+                        <input class="loto__check check" type="checkbox" disabled name="lot-2">
+                        <input class="loto__check check" type="checkbox" disabled name="lot-3">
+                        <input class="loto__check check" type="checkbox" disabled name="lot-4">
+                        <input class="loto__check check" type="checkbox" disabled name="lot-5">
+
+                        <button class="loto__btn btn" type="submit">Испытать удачу</button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="page__move move">
+                <div class="container">
+                    <h2 class="move__subheading subheading">Движение</h2>
+                    <p class="move__text text">
+                        <b>Задача 5&#11088;.</b> Реализовать управление <em>checked</em> с помощью кнопок влево и вправо.<br>
+                        При этом, если мы дошли до предела, то checked перемещается на первый элемент.<br>
+                        Управление должно быть универсальным и работать на любое количество радио-кнопок.
+                    </p>
+
+                    <input class="move__radio radio" type="radio" name="radio-1">
+                    <input class="move__radio radio" type="radio" name="radio-2">
+                    <input checked class="move__radio radio" type="radio" name="radio-3">
+                    <input class="move__radio radio" type="radio" name="radio-4">
+                    <input class="move__radio radio" type="radio" name="radio-5">
+
+                    <button class="move__btn btn" type="button">←</button>
+                    <button class="move__btn btn" type="button">→</button>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
