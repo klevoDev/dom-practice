@@ -18,8 +18,8 @@ function chekEvenNumber() {
         }
     })
 }
-
 chekEvenNumber()
+
 
 function calculate() {
     const beginEl = document.querySelector('.begin__form')
@@ -50,5 +50,54 @@ function calculate() {
         // ?    result.value = parseInt(a) + parseInt(b)
     });
 }
-
 calculate()
+
+
+function getDefaultСolor() {
+
+    const sectionBackEl = document.querySelector('.page__back');
+    const selectedColor = sectionBackEl.querySelector('[selected]')
+    const bodyEl = sectionBackEl.closest('body')
+    const colorBackEl = selectedColor.value
+
+    if (colorBackEl === 'gray') {
+        bodyEl.style.backgroundColor = "#ccc"
+    } else if (colorBackEl === 'dark-gray') {
+        bodyEl.style.backgroundColor = "#332f2c"
+    } else if (colorBackEl === 'light-yellow') {
+        bodyEl.style.backgroundColor = "#ffffcc"
+    } else if (colorBackEl === 'orange') {
+        bodyEl.style.backgroundColor = "#ff9640"
+    } else if (colorBackEl === 'white') {
+        bodyEl.style.backgroundColor = "#fff"
+    }
+}
+getDefaultСolor()
+
+
+function changeBackground() {
+    const sectionBackEl = document.querySelector('.page__back');
+    const selectEl = sectionBackEl.querySelector('select');
+    const buttonEl = sectionBackEl.querySelector('button');
+    const bodyEl = sectionBackEl.closest('body')
+
+    buttonEl.addEventListener('click', (event) => {
+        const color = selectEl.value
+        if (color === 'gray') {
+            bodyEl.style.backgroundColor = "#ccc"
+        } else if (color === 'dark-gray') {
+            bodyEl.style.backgroundColor = "#332f2c"
+        } else if (color === 'light-yellow') {
+            bodyEl.style.backgroundColor = "#ffffcc"
+        } else if (color === 'orange') {
+            bodyEl.style.backgroundColor = "#ff9640"
+        } else if (color === 'white') {
+            bodyEl.style.backgroundColor = "#fff"
+        }
+    })
+}
+changeBackground()
+
+
+
+
