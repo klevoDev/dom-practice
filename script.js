@@ -1,20 +1,20 @@
 function chekEvenNumber() {
-    const enputEl = document.querySelector('.start__form');
+    const formEl = document.querySelector('.start__form');
 
-    const queryInputEl = enputEl.querySelector('input');
+    const queryInputEl = formEl.querySelector('input');
 
-    const resultEnput = enputEl.querySelector('[readonly]')
+    const resultInputEl = formEl.querySelector('[readonly]')
 
-    const buttonSubmit = enputEl.querySelector('button');
+    const buttonEl = formEl.querySelector('button');
 
-    buttonSubmit.addEventListener('click', (e) => {
+    buttonEl.addEventListener('click', () => {
         const data = queryInputEl.value
         if (isNaN(data)) {
-            resultEnput.value = "NaN"
+            resultInputEl.value = "NaN"
         } else if (data % 2 === 0) {
-            resultEnput.value = 'четное'
-        } else if (data % 2 !== 0) {
-            resultEnput.value = 'нечетное'
+            resultInputEl.value = 'четное'
+        } else {
+            resultInputEl.value = 'нечетное'
         }
     })
 }
@@ -22,70 +22,65 @@ chekEvenNumber()
 
 
 function calculate() {
-    const beginEl = document.querySelector('.begin__form')
-    const firstOperand = beginEl.querySelector('input')
-    const secondOperand = beginEl.querySelector('[name="operand-2"]')
-    const operator = beginEl.querySelector('select')
-    const result = beginEl.querySelector('[readonly]')
-    const buttonSubmit = beginEl.querySelector('button')
+    const formEl = document.querySelector('.begin__form')
 
-    buttonSubmit.addEventListener('click', (e) => {
+    const firstOperandEl = formEl.querySelector('input')
+    const secondOperandEl = formEl.querySelector('[name="operand-2"]')
+    const operatorEl = formEl.querySelector('select')
+    const resultEl = formEl.querySelector('[readonly]')
+    const buttonSubmitEl = formEl.querySelector('button')
 
-        const a = firstOperand.value
-        const b = secondOperand.value
-        const sign = operator.value
+    buttonSubmitEl.addEventListener('click', (e) => {
+
+        const a = firstOperandEl.value
+        const b = secondOperandEl.value
+        const sign = operatorEl.value
 
         if (isNaN(a) || isNaN(b)) {
-            result.value = 'NaN'
+            resultEl.value = 'NaN'
         } else {
-            sign === 'plus' && (result.value = parseInt(a) + parseInt(b))
-            sign === 'subtraction' && (result.value = a - b)
-            sign === 'divide' && (result.value = (a / b).toFixed(2))
-            sign === 'multiplication' && (result.value = a * b)
-        }
+            switch (sign) {
+                case 'plus':
+                    resultEl.value = parseInt(a) + parseInt(b)
+                    break;
 
+                case 'subtraction':
+                    resultEl.value = a - b
+                    break;
+
+                case 'divide':
+                    resultEl.value = (a / b).toFixed(2)
+                    break;
+
+                case 'multiplication':
+
+                    resultEl.value = a * b
+                    break;
+            }
+
+        }
         e.preventDefault()
-        // ? почему не работает я же задал + ?
-        // ? if (sign === '+') {
-        // ?    result.value = parseInt(a) + parseInt(b)
+
     });
 }
 calculate()
-
-
-function getDefaultСolor() {
-
-    const sectionBackEl = document.querySelector('.page__back');
-    const selectedColor = sectionBackEl.querySelector('[selected]')
-    const buttonEl = sectionBackEl.querySelector('button')
-    const buttonDefault = buttonEl.nextElementSibling
-    const bodyEl = sectionBackEl.closest('body')
-    const colorBackEl = selectedColor.value
-
-    buttonDefault.addEventListener('click', (event) => {
-        if (colorBackEl === 'gray') {
-            bodyEl.style.backgroundColor = "#ccc"
-        } else if (colorBackEl === 'dark-gray') {
-            bodyEl.style.backgroundColor = "#332f2c"
-        } else if (colorBackEl === 'light-yellow') {
-            bodyEl.style.backgroundColor = "#ffffcc"
-        } else if (colorBackEl === 'orange') {
-            bodyEl.style.backgroundColor = "#ff9640"
-        } else if (colorBackEl === 'white') {
-            bodyEl.style.backgroundColor = "#fff"
-        }
-    })
-}
-getDefaultСolor()
 
 
 function changeBackground() {
     const sectionBackEl = document.querySelector('.page__back');
     const selectEl = sectionBackEl.querySelector('select');
     const buttonEl = sectionBackEl.querySelector('button');
-    const bodyEl = sectionBackEl.closest('body')
+    const bodyEl = document.body
 
-    buttonEl.addEventListener('click', (event) => {
+    const buttonDefault = buttonEl.nextElementSibling
+    const colorDefault = selectEl.value
+
+    buttonDefault.addEventListener('click', () => {
+        console.log(selectEl.value);
+        bodyEl.style.backgroundColor = colorDefault
+    })
+
+    buttonEl.addEventListener('click', () => {
         const color = selectEl.value
         if (color === 'gray') {
             bodyEl.style.backgroundColor = "#ccc"
@@ -104,60 +99,59 @@ changeBackground()
 
 
 function lottery() {
+    const formEl = document.querySelector('.loto__form')
+    const checkBoxList = formEl.querySelectorAll('.loto__check')
+    const buttonEl = formEl.querySelector('button');
 
-    const lotoEl = document.querySelector('.loto__form')
-    console.log(lotoEl);
-    const buttonEl = lotoEl.querySelector('button')
-    console.log(buttonEl);
-
-    const checkBox1 = lotoEl.querySelector('[name="lot-1"]')
-    const checkBox2 = lotoEl.querySelector('[name="lot-2"]')
-    const checkBox3 = lotoEl.querySelector('[name="lot-3"]')
-    const checkBox4 = lotoEl.querySelector('[name="lot-4"]')
-    const checkBox5 = lotoEl.querySelector('[name="lot-5"]')
-
-    let countTap = '';
+    let countTap = 0
 
     buttonEl.addEventListener('click', (e) => {
 
-        let onCheckBox = parseInt(Math.random() * (5 - 1 + 1) + 1);
+        let successCount = 0
 
-        countTap += String(onCheckBox)
+        checkBoxList.forEach((el) => {
+            const isChecked = !!(parseInt(Math.random() * 2));
+            el.checked = isChecked
+            successCount += isChecked
+        })
+        successCount === 5 && alert('Победа')
+        countTap += 1
+        countTap === 3 && (e.currentTarget.disabled = true)
 
-        if (countTap.length > 3) {
-            buttonEl.disabled = true
-        }
-
-        if (onCheckBox === 1) {
-            (checkBox1.disabled = false)
-        } else if (onCheckBox === 2) {
-            checkBox1.disabled = false
-            checkBox2.disabled = false
-        } else if (onCheckBox === 3) {
-            checkBox1.disabled = false
-            checkBox2.disabled = false
-            checkBox3.disabled = false
-        } else if (onCheckBox === 4) {
-            checkBox1.disabled = false
-            checkBox2.disabled = false
-            checkBox3.disabled = false
-            checkBox4.disabled = false
-        } else if (onCheckBox === 5) {
-            checkBox1.disabled = false
-            checkBox2.disabled = false
-            checkBox3.disabled = false
-            checkBox4.disabled = false
-            checkBox5.disabled = false
-
-            checkBox1.checked = true
-            checkBox2.checked = true
-            checkBox3.checked = true
-            checkBox4.checked = true
-            checkBox5.checked = true
-
-            alert("Вы выиграли приз.")
-        }
         e.preventDefault()
     })
 }
 lottery()
+
+
+
+function move() {
+    const pageEl = document.querySelector('.page__move');
+    const radioList = pageEl.querySelectorAll('.move__radio')
+    const leftButtonEl = pageEl.querySelector('button')
+    const rightButtonEl = leftButtonEl.nextElementSibling
+
+    console.log(radioList[2]);
+
+    let indexS = 2
+
+    rightButtonEl.addEventListener('click', (event) => {
+        radioList.forEach((el, index) => {
+            if (el.checked === true) {
+                el.checked = false
+            }
+
+
+            if (el.index === index) {
+                el.checked = true
+            }
+        })
+
+    });
+
+    leftButtonEl.addEventListener('click', (event) => {
+
+    });
+
+}
+move()
