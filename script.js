@@ -133,7 +133,6 @@ function move() {
 
     console.log(radioList[2]);
 
-    let indexS = 2
 
     rightButtonEl.addEventListener('click', (event) => {
         radioList.forEach((el, index) => {

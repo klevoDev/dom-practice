@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Делегирование</title>
+
+    <style>
+        table {
+            width: 400px;
+        }
+
+        th {
+            height: 50px;
+            border: 1px solid #000;
+            border-radius: 4px;
+        }
+
+        td {
+            height: 50px;
+            width: 100px;
+        }
+
+        td button {
+            height: 100%;
+            width: 100%;
+            font-size: 26px;
+            background-color: #e0e0e0;
+        }
+
+        th input {
+            width: 100%;
+            height: 100%;
+            text-align: right;
+            font-size: 30px;
+            border: none;
+            padding-left: 15px;
+            padding-right: 15px;
+            box-sizing: border-box;
+        }
+
+        .about__btn {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <main class="page">
+            <section class="start page__start">
+                <div class="container">
+                    <h1 class="start__heading">
+                        Задачник по делегированию
+                    </h1>
+                    <p class="start__task task">
+                        Все задачи должны работать корретно и не мешать работе друг друга. Код комментировать не нужно.<br>
+                        <strong>ВНИМАНИЕ:</strong> Добавлять классы, id, дата-атрибуты запрещено. Все задачи должны быть решены средствами JS.<br>
+                        <b>Дополнительное задание:</b> разобраться, что означают любые теги и атрибуты в этом файле, и когда они применяются.
+                    </p>
+                    <h2 class="begin__subheading subheading">
+                        Задание 1.
+                    </h2>
+                    <ul class="start__list-task">
+                        <li class="start__item">
+                            Если пользователь нажал на checkbox, то вывести в консоль атрибут name нажатого
+                        </li>
+                        <li class="start__item">
+                            Если пользователь нажал на текстовое поле, то вывести его значение value
+                        </li>
+                        <li class="start__item">
+                            Если пользователь нажал на кнопку, то вывести его значение id
+                        </li>
+                        <li class="start__item">
+                            Если пользователь нажал на что-то другое, то ничего не выводить
+                        </li>
+                    </ul>
+
+                    <div class="start__block">
+                        <span>Поле для задания</span>
+                        <input type="checkbox" name="check-0">
+                        <input type="checkbox" name="check-1">
+                        <input type="button" name="btn" value="  " id="btn-1">
+                        <input type="text" name="texter" value="im">
+                        <input type="text" name="mix" value="mi-mi-mi">
+                        <input type="button" name="btn" value="  " id="btn-2">
+                        <input type="checkbox" name="check-2">
+                        <input type="checkbox" name="check-3">
+                        <span>Случайный текст</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about page__about">
+                <div class="container">
+                    <h2 class="begin__subheading subheading">
+                        Задание 2.
+                    </h2>
+                    <p class="start__task task">
+                        Реализовать следуюущую логику:
+                        Изначально ссылки не должны работать по клику
+                        Если ввести кнопки в определённом порядке, то всплывает окно alert, в котором скзаано, что теперь доступны ссылки. <br>
+
+                        <i>Какую именно последовательность кнопок необходимо нажать выбрать самостоятельно, создать для этого отдельную переменную</i>
+
+                        <b>Учесть:</b><br>
+                        Пароль должен сработать, независимо от того, на какие кнопки уже нажимали, главное ввести подряд необходимую комбинацию
+
+                    </p>
+                    <div class="about__block">
+                        <div class="about__link">
+                            <ul class="about__list">
+                                <li class="about__item">
+                                    <a href="https://yandex.ru" target="_blank" class="about__link">Яндекс</a>
+                                </li>
+                                <li class="about__item">
+                                    <a href="https://google.com" target="_blank" class="about__link">Гугл</a>
+                                </li>
+                                <li class="about__item">
+                                    <a href="https://mail.ru" target="_blank" class="about__link">Мэил</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="about__password">
+                            <button type="button" id="1" class="about__btn">ῼ</button>
+                            <button type="button" id="2" class="about__btn">Ỡ</button>
+                            <button type="button" id="3" class="about__btn">Ẅ</button>
+                            <button type="button" id="4" class="about__btn">ᵯ</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="begin page__begin">
+                <div class="container">
+                    <h2 class="begin__subheading subheading">
+                        Задание 3. Простой калькулятор
+                    </h2>
+                    <p class="begin__task task">
+
+                        Реализовать простой калькулятор, пользуясь делегированием.
+                        (Делегирование в javascript – это возможность обрабатывать дочерние элементы через один родительский)
+                        Все кнопки должны быть функциональны и калькулятор должен вычислять по нажатию на знак равно. <br><br>
+                        Калькулятор работает только с двумя операндами
+                        <br><b>Учесть:</b>
+                    </p>
+                    <ul class="begin__list">
+                        <li class="begin__point">
+                            По нажатию на любую из кнопок мы видим её на экране (внутри тега input)
+                        </li>
+                        <li class="begin__point">
+                            Кнопка "x²" возводит во вторую степень введённое число
+                        </li>
+                        <li class="begin__point">
+                            Кнопка "±" меняет знак операнда на противоположный
+                        </li>
+                        <li class="begin__point">
+                            Кнопка "Сброс" возвращает калькулятор в начальное состояние
+                        </li>
+                        <li class="begin__point">
+                            * Если нажали на 7, потом на знак, например, +, а затем вместо цифры нажали на любой другой знак, например "-", то вместо сложение будет происходить вычитание, т.к. знак действия изменился
+                        </li>
+                    </ul>
+                    <div class="begin__calculator">
+                        <table class="begin__table">
+                            <tr>
+                                <th colspan="4">
+                                    <input type="text" name="result" value="0" readonly>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button type="button">Сброс</button>
+                                </td>
+                                <td>
+                                    <button type="button" style="background-color: goldenrod;">x²</button>
+                                </td>
+                                <td>
+                                    <button type="button" style="background-color: goldenrod;">÷</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button">7</button>
+                                </td>
+                                <td>
+                                    <button type="button">8</button>
+                                </td>
+                                <td>
+                                    <button type="button">9</button>
+                                </td>
+                                <td>
+                                    <button type="button" style="background-color: goldenrod;">×</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button">4</button>
+                                </td>
+                                <td>
+                                    <button type="button">5</button>
+                                </td>
+                                <td>
+                                    <button type="button">6</button>
+                                </td>
+                                <td>
+                                    <button type="button" style="background-color: goldenrod;">-</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button">1</button>
+                                </td>
+                                <td>
+                                    <button type="button">2</button>
+                                </td>
+                                <td>
+                                    <button type="button">3</button>
+                                </td>
+                                <td>
+                                    <button type="button" style="background-color: goldenrod;">+</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button type="button">0</button>
+                                </td>
+                                <td>
+                                    <button type="button" style="background-color: goldenrod;">±</button>
+                                </td>
+                                <td>
+                                    <button type="button" style="background-color: goldenrod;">=</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+<script src="./script-2.js"></script>
+
+</html>
