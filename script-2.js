@@ -83,78 +83,83 @@ function enterPassword() {
 enterPassword()
 
 
-
-
-
-
-
-
 function calculator() {
 
     const calcEl = document.querySelector('table')
-    let ledResult = calcEl.querySelector('[name="result"]')
+    const ledResult = calcEl.querySelector('[name="result"]')
 
-    let firstOperand = ''
-    let sign = ''
-    let secondOperator = 0
+    let a = '';
+    let b = '';
+    let sign = '';
+    let result = '';
 
     calcEl.addEventListener('click', (e) => {
 
+        const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+        const operator = ['÷', '×', '-', '+']
+
         let value = e.target.innerHTML
-        firstOperand += value
-        ledResult.value = firstOperand
 
-        if (value === '÷') {
-            sign = '/'
-        } else if (value === '-') {
+        //очистить
+        if (value === 'Сброс') {
+            a = ''
+            b = ''
+            sign = ''
+        }
+
+        // наполняем a и б
+        if (b === '' && sign === '') {
+            numbers.forEach(el => value === el && (a += value));
+            result = a
+        } else if (a !== '' && sign !== '') {
+            numbers.forEach(el => value === el && (b += value));
+            result = b
+        }
+
+        // наполняем знак
+        operator.forEach(el => {
+            if (value === el) {
+                sign += value
+                result = sign
+            }
+        });
+
+        // меняем знак
+        if (value === '±' && sign === '+') {
             sign = '-'
-        } else if (value === '+') {
+            result = '-'
+        } else if (value === '±' && sign === '-') {
             sign = '+'
-        } else if (value === '×') {
-            sign = '*'
+            result = '+'
         }
 
-        if (firstOperand !== '' && sign !== '') {
-            secondOperator += value
+        // возводим в степень
+        if (value === 'x²') {
+            result = Math.pow(a, 2)
         }
-
-        if (value === '=' && firstOperand !== '' && sign !== '' && secondOperator !== '') {
-            ledResult.value = Number(firstOperand * secondOperator)
-        }
-
-
-        console.log(e.target.innerHTML);
 
         if (value === '=') {
             switch (sign) {
-                case '+':
-                    ledResult.value = (+firstOperand) + (+secondOperator)
-                    break;
                 case '-':
-                    ledResult.value = firstOperand - secondOperator
+                    result = a - b
                     break;
-                case '*':
-                    ledResult.value = firstOperand - secondOperator
+                case '÷':
+                    result = a / b
                     break;
-                case '/':
-                    ledResult.value = firstOperand - secondOperator
+                case '×':
+                    result = a * b
+                    break;
+                case '+':
+                    result = (+a) + (+b)
                     break;
                 default:
                     break;
             }
         }
 
-
-        if (value === 'Сброс') {
-            firstOperand = ''
-            secondOperator = ''
-            sign = ''
-            ledResult.value = ''
-        }
-
+        console.log(a, sign, b);
+        ledResult.value = result
     })
-
-
 }
 
 calculator()
