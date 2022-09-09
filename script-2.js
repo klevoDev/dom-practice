@@ -86,7 +86,12 @@ enterPassword()
 function calculator() {
 
     const calcEl = document.querySelector('table')
+    console.log(calcEl);
+    const buttonEl = calcEl.querySelectorAll('button')
+    console.log(buttonEl);
     const ledResult = calcEl.querySelector('[name="result"]')
+
+
 
     let a = '';
     let b = '';
@@ -119,24 +124,20 @@ function calculator() {
         // наполняем знак
         operator.forEach(el => {
             if (value === el) {
-                sign += value
+                sign = value
                 result = sign
             }
         });
 
         // меняем знак
-        if (value === '±' && sign === '+') {
-            sign = '-'
-            result = '-'
-        } else if (value === '±' && sign === '-') {
-            sign = '+'
-            result = '+'
+        if (value === '±') {
+            a = String(a * -1)
+            result = a
         }
 
         // возводим в степень
-        if (value === 'x²') {
-            result = Math.pow(a, 2)
-        }
+        value === 'x²' && (result = a ** 2)
+
 
         if (value === '=') {
             switch (sign) {
