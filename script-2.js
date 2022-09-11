@@ -100,66 +100,69 @@ function calculator() {
 
     calcEl.addEventListener('click', (e) => {
 
-        const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-        const operator = ['÷', '×', '-', '+']
+        if (e.target.name !== 'result') {
 
-        let value = e.target.innerHTML
+            const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+            const operator = ['÷', '×', '-', '+']
 
-        //очистить
-        if (value === 'Сброс') {
-            a = ''
-            b = ''
-            sign = ''
-        }
+            let value = e.target.innerHTML
 
-        // наполняем a и б
-        if (b === '' && sign === '') {
-            numbers.forEach(el => value === el && (a += value));
-            result = a
-        } else if (a !== '' && sign !== '') {
-            numbers.forEach(el => value === el && (b += value));
-            result = b
-        }
-
-        // наполняем знак
-        operator.forEach(el => {
-            if (value === el) {
-                sign = value
-                result = sign
+            //очистить
+            if (value === 'Сброс') {
+                a = ''
+                b = ''
+                sign = ''
             }
-        });
 
-        // меняем знак
-        if (value === '±') {
-            a = String(a * -1)
-            result = a
-        }
-
-        // возводим в степень
-        value === 'x²' && (result = a ** 2)
-
-
-        if (value === '=') {
-            switch (sign) {
-                case '-':
-                    result = a - b
-                    break;
-                case '÷':
-                    result = a / b
-                    break;
-                case '×':
-                    result = a * b
-                    break;
-                case '+':
-                    result = (+a) + (+b)
-                    break;
-                default:
-                    break;
+            // наполняем a и б
+            if (b === '' && sign === '') {
+                numbers.forEach(el => value === el && (a += value));
+                result = a
+            } else if (a !== '' && sign !== '') {
+                numbers.forEach(el => value === el && (b += value));
+                result += b[b.length - 1]
             }
+
+            // наполняем знак
+            operator.forEach(el => {
+                if (value === el) {
+                    sign = value
+                    result += sign
+                }
+            });
+
+            // меняем знак
+            if (value === '±') {
+                a = String(a * -1)
+                result = a
+            }
+
+            // возводим в степень
+            value === 'x²' && (result = a ** 2)
+
+            if (value === '=') {
+                switch (sign) {
+                    case '-':
+                        result = a - b
+                        break;
+                    case '÷':
+                        result = a / b
+                        break;
+                    case '×':
+                        result = a * b
+                        break;
+                    case '+':
+                        result = (+a) + (+b)
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            console.log(a, sign, b);
+            ledResult.value = result
         }
 
-        console.log(a, sign, b);
-        ledResult.value = result
     })
 }
 

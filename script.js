@@ -124,120 +124,33 @@ function lottery() {
 lottery()
 
 
-
-function move() {
+function radio() {
     const pageEl = document.querySelector('.page__move');
+
     const radioList = pageEl.querySelectorAll('.move__radio')
+
     const leftButtonEl = pageEl.querySelector('button')
     const rightButtonEl = leftButtonEl.nextElementSibling
 
-    const radioOne = pageEl.querySelector('[name="radio-1"]')
-    const radioTwo = pageEl.querySelector('[name="radio-2"]')
-    const radioThree = pageEl.querySelector('[name="radio-3"]')
-    const radioFour = pageEl.querySelector('[name="radio-4"]')
-    const radioFive = pageEl.querySelector('[name="radio-5"]')
 
+    leftButtonEl.addEventListener('click', () => {
 
-
-    rightButtonEl.addEventListener('click', (event) => {
-
-        switch (true) {
-            case radioOne.checked:
-                radioOne.checked = false
-                radioTwo.checked = true
-                break;
-            case radioTwo.checked:
-                radioTwo.checked = false
-                radioThree.checked = true
-                break;
-            case radioThree.checked:
-                radioThree.checked = false
-                radioFour.checked = true
-                break;
-            case radioFour.checked:
-                radioFour.checked = false
-                radioFive.checked = true
-                break;
-            case radioFive.checked:
-                radioFive.checked = false
-                radioOne.checked = true
-                break;
-            default:
-                break;
-        }
     })
 
-    leftButtonEl.addEventListener('click', (event) => {
-        switch (true) {
-            case radioOne.checked:
-                radioOne.checked = false
-                radioFive.checked = true
+    rightButtonEl.addEventListener('click', () => {
+
+        for (let i = 0; i < radioList.length; i++) {
+            if (radioList[i].checked && i === radioList.length - 1) {
+                radioList[i].checked = false
+                radioList[0].checked = true
                 break;
-            case radioTwo.checked:
-                radioTwo.checked = false
-                radioOne.checked = true
+            }
+            if (radioList[i].checked) {
+                radioList[i].checked = false
+                radioList[i + 1].checked = true
                 break;
-            case radioThree.checked:
-                radioThree.checked = false
-                radioTwo.checked = true
-                break;
-            case radioFour.checked:
-                radioFour.checked = false
-                radioThree.checked = true
-                break;
-            case radioFive.checked:
-                radioFive.checked = false
-                radioFour.checked = true
-                break;
-            default:
-                break;
+            }
         }
     })
 }
-move()
-
-
-
-
-        //     document.getElementById("firstbutton").disabled = true;
-        //     document.getElementById("secondbutton").disabled = false;
-        // }
-
-
-        // radioList.forEach((el, index) => {
-        //     if (el.checked === true) {
-        //         switch (index) {
-        //             case 0:
-        //                 el.checked = false
-        //                 break;
-        //             case 1:
-        //                 el.checked = false
-        //                 break;
-        //             case 2:
-        //                 el.checked = false
-        //                 break;
-        //             case 3:
-        //                 el.checked = false
-        //                 break;
-        //             case 4:
-        //                 el.checked = false
-        //             default:
-        //                 break;
-        //         }
-        //     }
-
-
-
-
-
-        // if (index === 2) {
-        //     el.checked = false
-        //     indexRadio += 1
-        // } else if (index === 3) {
-        //     el.checked = true
-        //     indexRadio += 1
-        // } else if (index === 4) {
-        //     indexRadio.checked = false
-        //     el.checked = true
-        //     indexRadio += 1
-        // }
+radio()
